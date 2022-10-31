@@ -22,17 +22,33 @@ Double_t funcEprime(Double_t *x, Double_t *par) {
     return res;
 }
 
+void DrawText(Double_t pose[3], bool fromy) {
+    int color = fromy ? kGreen : kRed;
+    TText *t1 = new TText(pose[0], pose[1], "E' = 10 GeV");
+    t1->SetTextAlign(22);
+    t1->SetTextColor(color);
+    t1->SetTextFont(43);
+    t1->SetTextSize(10);
+    t1->SetTextAngle(pose[2]);
+
+    t1->Draw();
+}
+
 void electronmethod() {
     gBenchmark->Start("electronmethod");
 
     // Creating the functions via TF1
     TF1 *fromy = new TF1("x vs Q^2 from y", funcy, 1e-4, 1, 1);
     fromy->SetLineColor(3);
+    fromy->SetLineStyle(9);
     double ys[3] = {1, 0.1, 0.01};
 
     TF1 *fromEprime = new TF1("x vs Q^2 from E'", funcEprime, 1e-4, 1, 1);
     fromEprime->SetLineColor(2);
     double Eprimes[9] = {2, 4, 6, 8, 10, 12, 20, 40, 100};
+
+    // Text
+    Double_t EprimePose1[3] = {0.12, 10, 90};
 
     // Create the plot
     TCanvas *c1 = new TCanvas("c1", "x vs Q^2", 200, 10, 700, 900);
@@ -61,7 +77,9 @@ void electronmethod() {
         fromEprime->DrawCopy("SAME");
     }
 
+    DrawText(EprimePose1, false);
+
     c1->Update();
 
-    gBenchmark->Show("xvsq2");
+    gBenchmark->Show("electronmethod");
 }
