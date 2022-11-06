@@ -9,3 +9,4 @@
 
 
 Processing jacquetblondel.c...
+(double) 0.10000000

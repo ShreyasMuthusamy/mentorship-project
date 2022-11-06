@@ -6,7 +6,11 @@ Double_t funcpt(Double_t *x, Double_t *par) {
     Double_t Ep = 100;
     Double_t s = 4 * Ee * Ep;
 
-    return (s * xx + TMath::Sqrt(s * s * xx * xx + 4 * s * xx * pt * pt)) / 2;
+    if (s * xx >= 4 * pt * pt) {
+        return (s * xx + TMath::Sqrt(s * s * xx * xx - 4 * s * xx * pt * pt)) / 2;
+    } else {
+        return (s * xx / 2);
+    }
 }
 
 Double_t funcEpz(Double_t *x, Double_t *par) {

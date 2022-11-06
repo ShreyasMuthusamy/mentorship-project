@@ -70,7 +70,7 @@ void electronmethod() {
     pad1->SetLogx();
     pad1->SetLogy();
 
-    TFrame *frame = pad1->GetFrame;
+    TFrame *frame = pad1->GetFrame();
     frame->SetBorderMode(-1);
     frame->SetBorderSize(5);
 
