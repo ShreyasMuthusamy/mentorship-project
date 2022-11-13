@@ -8,5 +8,5 @@
    ------------------------------------------------------------------
 
 
-Processing jacquetblondel.c...
-(double) 0.10000000
+Processing electronmethod.c...
+electronmethod: Real Time =   2.87 seconds Cpu Time =   0.51 seconds
