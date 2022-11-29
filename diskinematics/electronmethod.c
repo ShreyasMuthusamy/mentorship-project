@@ -64,20 +64,20 @@ void DrawText(Double_t pose[3], char *ctext,  char *cgraph) {
 
 void genericElectronMethod(Double_t Ee, Double_t Ep) {
     // Creating the functions via TF1
-    TF1 *fromy = new TF1("x vs Q^2 via the electron method; x; Q^2", funcy, 1e-5, 1, 3);
+    TF1 *fromy = new TF1("x vs Q^2 via the electron method", funcy, 1e-5, 1, 3);
     fromy->SetParameter(1, Ee);
     fromy->SetParameter(2, Ep);
     fromy->SetLineColor(3);
     fromy->SetLineStyle(9);
     double ys[3] = {1, 0.1, 0.01};
 
-    TF1 *fromEprime = new TF1("x vs Q^2 via the electron method; x; Q^2", funcEprime, 1e-5, 1, 3);
+    TF1 *fromEprime = new TF1("x vs Q^2 via the electron method", funcEprime, 1e-5, 1, 3);
     fromEprime->SetParameter(1, Ee);
     fromEprime->SetParameter(2, Ep);
     fromEprime->SetLineColor(2);
     double Eprimes[9] = {2, 4, 6, 8, 10, 12, 20, 40, 100};
 
-    TF1 *fromThetaprime = new TF1("x vs Q^2 via the electron method; x; Q^2", funcThetaprime, 1e-5, 1, 3);
+    TF1 *fromThetaprime = new TF1("x vs Q^2 via the electron method", funcThetaprime, 1e-5, 1, 3);
     fromThetaprime->SetParameter(1, Ee);
     fromThetaprime->SetParameter(2, Ep);
     fromThetaprime->SetFillStyle(1001);
@@ -103,7 +103,7 @@ void genericElectronMethod(Double_t Ee, Double_t Ep) {
     };
 
     // Create the plot
-    auto name = "10x100";
+    auto name = "c10x100";
     if (Ee == 10 && Ep == 100) { name = "c10x100"; }
     else if (Ee == 5 && Ep == 41) { name = "c5x41"; }
     else if (Ee == 18 && Ep == 275) { name = "c18x275"; }
@@ -115,10 +115,6 @@ void genericElectronMethod(Double_t Ee, Double_t Ep) {
     pad1->cd();
     pad1->SetLogx();
     pad1->SetLogy();
-
-    TFrame *frame = pad1->GetFrame();
-    frame->SetBorderMode(-1);
-    frame->SetBorderSize(5);
 
     for (int i = 0; i < 4; i++) {
         fromThetaprime->SetParameter(0, thetaprimes[i]);

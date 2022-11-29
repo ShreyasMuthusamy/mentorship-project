@@ -1,2 +1,5 @@
 # Execution data files
 .x
+
+# Private root files
+*.root
